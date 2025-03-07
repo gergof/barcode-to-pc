@@ -1,21 +1,32 @@
-import React, { useState } from 'react';
-import {View, Text} from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { SafeAreaView, View } from 'react-native';
 import Setup from './Setup';
 import { Configuration } from './types';
 import { useCameraPermission } from 'react-native-vision-camera';
 import Permission from './Permission';
+import Scanner from './Scanner';
 
 const Root: React.FC = () => {
-	const {hasPermission} = useCameraPermission();
+	const { hasPermission } = useCameraPermission();
 	const [config, setConfig] = useState<Configuration | null>(null);
 
-	return (
-		<View style={{flex: 1, backgroundColor: 'lightgray', padding: 30}}>
-			{!hasPermission ? <Permission /> :
-			!config ? <Setup setConfig={setConfig} /> : null
-			}
-		</View>
-	)
-}
+	const onExit = useCallback(() => {
+		setConfig(null);
+	}, [setConfig]);
 
-export default Root
+	return (
+		<SafeAreaView style={{ flex: 1, backgroundColor: 'lightgray' }}>
+			<View style={{ flex: 1, padding: 30 }}>
+				{!hasPermission ? (
+					<Permission />
+				) : !config ? (
+					<Setup setConfig={setConfig} />
+				) : (
+					<Scanner config={config} exit={onExit} />
+				)}
+			</View>
+		</SafeAreaView>
+	);
+};
+
+export default Root;

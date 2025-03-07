@@ -1,3 +1,3 @@
 export interface Configuration {
-	address: string
+	address: string;
 }
