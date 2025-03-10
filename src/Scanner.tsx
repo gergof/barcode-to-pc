@@ -5,6 +5,8 @@ import React, {
 	useRef,
 	useState,
 } from 'react';
+import { Button, LayoutChangeEvent, Text, View } from 'react-native';
+import { useKeepAwake } from '@sayem314/react-native-keep-awake';
 import useIsForeground from './hooks/useIsForeground';
 import { Configuration } from './types';
 import {
@@ -13,7 +15,6 @@ import {
 	useCodeScanner,
 } from 'react-native-vision-camera';
 import { throttle } from 'throttle-debounce';
-import { Button, LayoutChangeEvent, Text, View } from 'react-native';
 
 export interface ScannerProps {
 	config: Configuration;
@@ -24,6 +25,8 @@ const Scanner: React.FC<ScannerProps> = ({ config, exit }) => {
 	const isForeground = useIsForeground();
 	const [lastScan, setLastScan] = useState<string>('');
 	const duplicateScan = useRef({ code: '', time: Date.now() });
+
+	useKeepAwake();
 
 	const onScan = useCallback(
 		(code: string) => {
