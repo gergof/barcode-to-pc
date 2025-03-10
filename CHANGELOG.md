@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.0.9](https://github.com/gergof/barcode-to-pc/compare/v1.0.8...v1.0.9) (2025-03-10)
+
+
+### CI/Build
+
+* Removed builds that cause problems on linux ([8e083ad](https://github.com/gergof/barcode-to-pc/commit/8e083ad22c52971687070b4858a706b225b00eac))
+
 ## [1.0.8](https://github.com/gergof/barcode-to-pc/compare/v1.0.7...v1.0.8) (2025-03-10)
 
 
