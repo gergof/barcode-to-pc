@@ -23,10 +23,22 @@ export interface ScannerProps {
 const Scanner: React.FC<ScannerProps> = ({ config, exit }) => {
 	const isForeground = useIsForeground();
 	const [lastScan, setLastScan] = useState<string>('');
+	const duplicateScan = useRef({ code: '', time: Date.now() });
 
 	const onScan = useCallback(
 		(code: string) => {
+			if (duplicateScan.current.code == code) {
+				// scan the code twice only after 5 seconds
+				if (duplicateScan.current.time + 5 * 1000 > Date.now()) {
+					return;
+				}
+			}
+
 			setLastScan(code);
+			duplicateScan.current = {
+				code,
+				time: Date.now(),
+			};
 
 			fetch(config.address, {
 				method: 'POST',
@@ -35,10 +47,10 @@ const Scanner: React.FC<ScannerProps> = ({ config, exit }) => {
 				}),
 			});
 		},
-		[config]
+		[config, setLastScan, duplicateScan]
 	);
 
-	const onScanThrottled = useMemo(() => throttle(1000, onScan), [onScan]);
+	const onScanThrottled = useMemo(() => throttle(500, onScan), [onScan]);
 
 	const camera = useRef<Camera>(null);
 	const device = useCameraDevice('back');
