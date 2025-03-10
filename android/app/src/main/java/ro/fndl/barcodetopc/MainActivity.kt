@@ -1,4 +1,4 @@
-package com.barcodetopc
+package ro.fndl.barcodetopc
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

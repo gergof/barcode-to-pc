@@ -1,0 +1,34 @@
+---
+kind: pipeline
+name: build-android
+type: docker
+image: registry.systest.eu/react-native-android-build:latest
+trigger:
+  event:
+    - tag
+steps:
+  - name: Retrieve signing certificate
+    environment:
+      ANDROID_KEYSTORE_BASE64:
+        from_secret: android_keystore_base64
+    commands:
+      - echo $ANDROID_KEYSTORE_BASE64 | base64 -di > android/app/release.keystore
+  - name: Install dependencies
+    commands:
+      - npm ci
+  - name: Build
+    env:
+      ANDROID_KEYSTORE: release.keystore
+      ANDROID_KEYSTORE_PASSWORD:
+        from_secret: android_keystore_password
+    commands:
+      - cd android
+      - gradle assembleRelease
+  - name: Github release APK
+    image: plugins/github-release
+    settings:
+      api_key:
+        from_secret: github_release_token
+      title: Release $DRONE_TAG
+      files:
+        - android/app/build/outputs/apk/release/app-release.apk

@@ -1,4 +1,4 @@
-package com.barcodetopc
+package ro.fndl.barcodetopc
 
 import android.app.Application
 import com.facebook.react.PackageList
