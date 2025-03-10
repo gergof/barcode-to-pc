@@ -47,6 +47,7 @@ steps:
   - name: Install dependencies
     image: golang
     commands:
+      - apt-get install -y gcc libc6-dev libx11-dev xorg-dev libxtst-dev
       - cd server
       - go get -v
   - name: Build Linux amd64
@@ -54,14 +55,6 @@ steps:
     environment:
       GOOS: linux
       GOARCH: amd64
-    commands:
-      - cd server
-      - go build -o barcode-to-pc-server-$GOOS-$GOARCH
-  - name: Build Linux arm64
-    image: golang
-    environment:
-      GOOS: linux
-      GOARCH: arm64
     commands:
       - cd server
       - go build -o barcode-to-pc-server-$GOOS-$GOARCH
@@ -73,27 +66,11 @@ steps:
     commands:
       - cd server
       - go build -o barcode-to-pc-server-$GOOS-$GOARCH
-  - name: Build Darwin arm64
-    image: golang
-    environment:
-      GOOS: darwin
-      GOARCH: arm64
-    commands:
-      - cd server
-      - go build -o barcode-to-pc-server-$GOOS-$GOARCH
   - name: Build Windows amd64
     image: golang
     environment:
       GOOS: windows
       GOARCH: amd64
-    commands:
-      - cd server
-      - go build -o barcode-to-pc-server-$GOOS-$GOARCH.exe
-  - name: Build Windows 386
-    image: golang
-    environment:
-      GOOS: windows
-      GOARCH: 386
     commands:
       - cd server
       - go build -o barcode-to-pc-server-$GOOS-$GOARCH.exe
