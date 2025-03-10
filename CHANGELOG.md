@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.0.6](https://github.com/gergof/barcode-to-pc/compare/v1.0.5...v1.0.6) (2025-03-10)
+
+
+### CI/Build
+
+* Install robotgo native dependencies ([efc0529](https://github.com/gergof/barcode-to-pc/commit/efc052915381b89fdafa2a9278320359c3c5c232))
+
 ## [1.0.5](https://github.com/gergof/barcode-to-pc/compare/v1.0.4...v1.0.5) (2025-03-10)
 
 
