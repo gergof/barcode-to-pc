@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.0.4](https://github.com/gergof/barcode-to-pc/compare/v1.0.3...v1.0.4) (2025-03-10)
+
+
+### Bug Fixes
+
+* Fixed that HTTP requests were blocked in release and that the same code was scanned multiple times ([102e522](https://github.com/gergof/barcode-to-pc/commit/102e5224636f2ef6867fe7a6fdf7bb2ae4a7b88d))
+
+
+### CI/Build
+
+* Correctly escape env var ([c476c3e](https://github.com/gergof/barcode-to-pc/commit/c476c3e3710aa4f4c9e584515b748b40bf08c535))
+* Created build pipeline for go ([9bff214](https://github.com/gergof/barcode-to-pc/commit/9bff214380a56b2a1c9de49130d905cb8842c5d7))
+
 ## [1.0.3](https://github.com/gergof/barcode-to-pc/compare/v1.0.2...v1.0.3) (2025-03-10)
 
 
