@@ -28,6 +28,7 @@ steps:
     commands:
       - cd android
       - gradle assembleRelease
+      - cd ..
   - name: Github release APK
     image: plugins/github-release
     settings:
@@ -36,3 +37,66 @@ steps:
       title: Release ${DRONE_TAG}
       files:
         - android/app/build/outputs/apk/release/app-release.apk
+---
+kind: pipeline
+name: build-server
+type: docker
+trigger:
+  event:
+    - tag
+steps:
+  - name: Install dependencies
+    image: golang
+    commands:
+      - cd server
+      - go get -v
+  - name: Build Linux amd64
+    image: golang
+    environment:
+      GOOS: linux
+      GOARCH: amd64
+    commands:
+      - go build -o barcode-to-pc-server-$GOOS-$GOARCH
+  - name: Build Linux arm64
+    image: golang
+    environment:
+      GOOS: linux
+      GOARCH: arm64
+    commands:
+      - go build -o barcode-to-pc-server-$GOOS-$GOARCH
+  - name: Build Darwin amd64
+    image: golang
+    environment:
+      GOOS: darwin
+      GOARCH: amd64
+    commands:
+      - go build -o barcode-to-pc-server-$GOOS-$GOARCH
+  - name: Build Darwin arm64
+    image: golang
+    environment:
+      GOOS: darwin
+      GOARCH: arm64
+    commands:
+      - go build -o barcode-to-pc-server-$GOOS-$GOARCH
+  - name: Build Windows amd64
+    image: golang
+    environment:
+      GOOS: windows
+      GOARCH: amd64
+    commands:
+      - go build -o barcode-to-pc-server-$GOOS-$GOARCH.exe
+  - name: Build Windows 386
+    image: golang
+    environment:
+      GOOS: windows
+      GOARCH: 386
+    commands:
+      - go build -o barcode-to-pc-server-$GOOS-$GOARCH.exe
+  - name: Github release binaries
+    image: plugins/github-release
+    settings:
+      api_key:
+        from_secret: github_release_token
+      title: Release ${DRONE_TAG}
+      files:
+        - server/barcode-to-pc-server-*
