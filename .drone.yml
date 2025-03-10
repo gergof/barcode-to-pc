@@ -51,30 +51,9 @@ steps:
       - apt-get install -y gcc libc6-dev libx11-dev xorg-dev libxtst-dev
       - cd server
       - go get -v
-  - name: Build Linux amd64
-    image: golang
-    environment:
-      GOOS: linux
-      GOARCH: amd64
-    commands:
-      - cd server
-      - go build -o barcode-to-pc-server-$GOOS-$GOARCH
-  - name: Build Darwin amd64
-    image: golang
-    environment:
-      GOOS: darwin
-      GOARCH: amd64
-    commands:
-      - cd server
-      - go build -o barcode-to-pc-server-$GOOS-$GOARCH
-  - name: Build Windows amd64
-    image: golang
-    environment:
-      GOOS: windows
-      GOARCH: amd64
-    commands:
-      - cd server
-      - go build -o barcode-to-pc-server-$GOOS-$GOARCH.exe
+      - GOOS=linux GOARCH=amd64 go build -o barcode-to-pc-server-$GOOS-$GOARCH
+      - GOOS=darwin GOARCH=amd64 go build -o barcode-to-pc-server-$GOOS-$GOARCH
+      - GOOS=windows GOARCH=amd64 go build -o barcode-to-pc-server-$GOOS-$GOARCH.exe
   - name: Github release binaries
     image: plugins/github-release
     settings:
