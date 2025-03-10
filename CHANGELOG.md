@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.0.11](https://github.com/gergof/barcode-to-pc/compare/v1.0.10...v1.0.11) (2025-03-10)
+
+
+### Bug Fixes
+
+* Prevent screen from going to sleep ([a151cc3](https://github.com/gergof/barcode-to-pc/commit/a151cc3e64feee797a05867a8f19cc18587e9ff0))
+
 ## [1.0.10](https://github.com/gergof/barcode-to-pc/compare/v1.0.9...v1.0.10) (2025-03-10)
 
 
