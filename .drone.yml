@@ -21,7 +21,7 @@ steps:
       - npm ci
   - name: Build
     image: registry.systest.eu/ci-images/react-native-android-build:latest
-    env:
+    environment:
       ANDROID_KEYSTORE: release.keystore
       ANDROID_KEYSTORE_PASSWORD:
         from_secret: android_keystore_password
