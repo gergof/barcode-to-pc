@@ -2,10 +2,12 @@
 kind: pipeline
 name: build-android
 type: docker
-image: registry.systest.eu/react-native-android-build:latest
+image: registry.systest.eu/ci-images/react-native-android-build:latest
 trigger:
   event:
     - tag
+image_pull_secrets:
+  - privatereg_docker_config
 steps:
   - name: Retrieve signing certificate
     environment:
