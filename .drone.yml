@@ -28,7 +28,6 @@ steps:
     commands:
       - cd android
       - gradle assembleRelease
-      - cd ..
   - name: Github release APK
     image: plugins/github-release
     settings:
@@ -56,6 +55,7 @@ steps:
       GOOS: linux
       GOARCH: amd64
     commands:
+      - cd server
       - go build -o barcode-to-pc-server-$GOOS-$GOARCH
   - name: Build Linux arm64
     image: golang
@@ -63,6 +63,7 @@ steps:
       GOOS: linux
       GOARCH: arm64
     commands:
+      - cd server
       - go build -o barcode-to-pc-server-$GOOS-$GOARCH
   - name: Build Darwin amd64
     image: golang
@@ -70,6 +71,7 @@ steps:
       GOOS: darwin
       GOARCH: amd64
     commands:
+      - cd server
       - go build -o barcode-to-pc-server-$GOOS-$GOARCH
   - name: Build Darwin arm64
     image: golang
@@ -77,6 +79,7 @@ steps:
       GOOS: darwin
       GOARCH: arm64
     commands:
+      - cd server
       - go build -o barcode-to-pc-server-$GOOS-$GOARCH
   - name: Build Windows amd64
     image: golang
@@ -84,6 +87,7 @@ steps:
       GOOS: windows
       GOARCH: amd64
     commands:
+      - cd server
       - go build -o barcode-to-pc-server-$GOOS-$GOARCH.exe
   - name: Build Windows 386
     image: golang
@@ -91,6 +95,7 @@ steps:
       GOOS: windows
       GOARCH: 386
     commands:
+      - cd server
       - go build -o barcode-to-pc-server-$GOOS-$GOARCH.exe
   - name: Github release binaries
     image: plugins/github-release
