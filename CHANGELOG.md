@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.0.3](https://github.com/gergof/barcode-to-pc/compare/v1.0.2...v1.0.3) (2025-03-10)
+
+
+### CI/Build
+
+* Fixed environment definition ([2a19787](https://github.com/gergof/barcode-to-pc/commit/2a19787104195a0766f71c2ac41bcd8c1d06bb12))
+
 ## [1.0.2](https://github.com/gergof/barcode-to-pc/compare/v1.0.1...v1.0.2) (2025-03-10)
 
 
