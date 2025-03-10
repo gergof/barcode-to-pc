@@ -2,7 +2,6 @@
 kind: pipeline
 name: build-android
 type: docker
-image: registry.systest.eu/ci-images/react-native-android-build:latest
 trigger:
   event:
     - tag
@@ -10,15 +9,18 @@ image_pull_secrets:
   - privatereg_docker_config
 steps:
   - name: Retrieve signing certificate
+    image: registry.systest.eu/ci-images/react-native-android-build:latest
     environment:
       ANDROID_KEYSTORE_BASE64:
         from_secret: android_keystore_base64
     commands:
       - echo $ANDROID_KEYSTORE_BASE64 | base64 -di > android/app/release.keystore
   - name: Install dependencies
+    image: registry.systest.eu/ci-images/react-native-android-build:latest
     commands:
       - npm ci
   - name: Build
+    image: registry.systest.eu/ci-images/react-native-android-build:latest
     env:
       ANDROID_KEYSTORE: release.keystore
       ANDROID_KEYSTORE_PASSWORD:
