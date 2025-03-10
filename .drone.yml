@@ -44,7 +44,7 @@ trigger:
   event:
     - tag
 steps:
-  - name: Install dependencies
+  - name: Build binaries
     image: golang
     commands:
       - apt-get update
@@ -52,8 +52,6 @@ steps:
       - cd server
       - go get -v
       - GOOS=linux GOARCH=amd64 go build -o barcode-to-pc-server-$GOOS-$GOARCH
-      - GOOS=darwin GOARCH=amd64 go build -o barcode-to-pc-server-$GOOS-$GOARCH
-      - GOOS=windows GOARCH=amd64 go build -o barcode-to-pc-server-$GOOS-$GOARCH.exe
   - name: Github release binaries
     image: plugins/github-release
     settings:
