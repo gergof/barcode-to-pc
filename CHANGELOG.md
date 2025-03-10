@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.0.8](https://github.com/gergof/barcode-to-pc/compare/v1.0.7...v1.0.8) (2025-03-10)
+
+
+### CI/Build
+
+* Changed build script for go project ([80273f7](https://github.com/gergof/barcode-to-pc/commit/80273f773bdc6a1b8df70e694cf994b5d8033ec1))
+
 ## [1.0.7](https://github.com/gergof/barcode-to-pc/compare/v1.0.6...v1.0.7) (2025-03-10)
 
 
