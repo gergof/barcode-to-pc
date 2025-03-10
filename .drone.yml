@@ -47,6 +47,7 @@ steps:
   - name: Install dependencies
     image: golang
     commands:
+      - apt-get update
       - apt-get install -y gcc libc6-dev libx11-dev xorg-dev libxtst-dev
       - cd server
       - go get -v
